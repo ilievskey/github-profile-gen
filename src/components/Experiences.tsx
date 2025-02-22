@@ -1,12 +1,17 @@
 import React, {useState} from 'react';
 
+type Field = {
+    text1: string;
+    text2: string;
+};
+
 const Experiences = () => {
 
     const [fields, setFields] = useState([
         {text1: "Hi! My name is", text2: "Joe Swanson"},
     ]);
 
-    const handleChange = (index, fieldKey, event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (index: number, fieldKey: keyof Field, event: React.ChangeEvent<HTMLInputElement>) => {
         const updatedFields = [...fields];
         updatedFields[index][fieldKey] = event.target.value;
         setFields(updatedFields);

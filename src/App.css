@@ -20,10 +20,13 @@ input[type="text"] {
 }
 
 .add{
+  box-sizing: border-box;
+  border: dashed 2px transparent;
   background-color: #2d2d2d;
   color: #ffffff;
 }
 .add:hover{
+  box-sizing: border-box;
   background-color: transparent;
   border: dashed 2px #2d2d2d;
   color: #2d2d2d;
