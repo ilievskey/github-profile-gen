@@ -25,7 +25,7 @@ const Experiences = () => {
     };
 
     return (
-        <div>
+        <div className="card-bg">
             <h1 className="text-xl">Experiences</h1>
             {fields.map((field, index) => (
                 <div key={index} className="m-2">
