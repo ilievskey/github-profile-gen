@@ -8,7 +8,7 @@ type Field = {
 const Experiences = () => {
 
     const [fields, setFields] = useState([
-        {text1: "Hi! My name is", text2: "Joe Swanson"},
+        {text1: "Hi! My name is", text2: "Joe Swanson"}
     ]);
 
     const handleChange = (index: number, fieldKey: keyof Field, event: React.ChangeEvent<HTMLInputElement>) => {
