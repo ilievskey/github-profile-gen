@@ -8,7 +8,7 @@ type Field = {
 const Experiences = () => {
 
     const [fields, setFields] = useState([
-        {text1: "Hi! My name is", text2: "Joe Swanson"}
+        {text1: "Noteworthy project I've done is", text2: ""}
     ]);
 
     const handleChange = (index: number, fieldKey: keyof Field, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +20,7 @@ const Experiences = () => {
     const addField = () => {
         setFields([
             ...fields,
-            {text1: "Hi! My name is", text2: "Joe Swanson"}
+            {text1: "Currently working on", text2: ""}
         ]);
     };
 
@@ -38,6 +38,7 @@ const Experiences = () => {
                         <input
                             type="text"
                             value={field.text2}
+                            placeholder="Project here"
                             onChange={(event) => handleChange(index, 'text2', event)}
                         />
                     </div>

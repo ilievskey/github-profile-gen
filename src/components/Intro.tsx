@@ -27,6 +27,7 @@ const Intro = () => {
                             <input
                                 type="text"
                                 value={field.intro}
+                                placeholder="Introduce yourself"
                                 onChange={event => handleChange(index, "intro", event)}
                             />
                             <input
@@ -41,6 +42,7 @@ const Intro = () => {
                         <div className="flex">
                             <input
                                 type="text"
+                                placeholder="What do you do"
                                 value={field.desc}
                                 onChange={event => handleChange(index, "desc", event)}
                             />
