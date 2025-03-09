@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {FaGithub, FaLinkedin, FaBehance} from 'react-icons/fa';
 
-type ContactField = {
-    platform: string;
-    icon: React.ReactNode;
-    url: string;
+type ContactProps = {
+    profileData: any;
+    setProfileData: React.Dispatch<React.SetStateAction<any>>;
 };
 
 const availableContacts =[
@@ -13,18 +12,24 @@ const availableContacts =[
     {platform: "Behance", icon: <FaBehance/>},
 ];
 
-const Contact = () => {
-    const [contactFields, setContactFields] = useState<ContactField[]>([]);
+const Contact: React.FC<ContactProps> = ({profileData, setProfileData}) => {
 
     const handleAddContact = (contact: {platform: string; icon: React.ReactNode}) => {
-        if(contactFields.some(field => field.icon === contact.icon)) return;
-        setContactFields([...contactFields, {platform: contact.platform, icon: contact.icon, url: ''}]);
+        if(profileData.contacts.some((field: any) => field.platform === contact.platform)) return;
+
+        setProfileData({
+            ...profileData,
+            contacts: [
+                ...profileData.contacts,
+                {platform: contact.platform, url: ""}
+            ]
+        });
     };
 
     const handleInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
-        const updatedContacts = [...contactFields];
+        const updatedContacts = [...profileData.contacts];
         updatedContacts[index].url = event.target.value;
-        setContactFields(updatedContacts);
+        setProfileData({...profileData, contacts: updatedContacts});
     };
 
     return (
@@ -42,7 +47,7 @@ const Contact = () => {
                 ))}
             </div>
             <div className="added-contacts mt-4">
-                {contactFields.map((field, index) => (
+                {profileData.contacts.map((field: any, index: number) => (
                     <div key={index} className="flex items-center mb-2">
                         <div className="flex items-center mr-2 w-24">
                             {field.icon}

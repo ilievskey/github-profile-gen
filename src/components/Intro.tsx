@@ -1,55 +1,40 @@
-import React, {useState} from "react";
+import React from "react";
 
-type Field = {
-    intro: string;
-    name: string;
-    desc: string;
+type IntroProps = {
+    profileData: any;
+    setProfileData: React.Dispatch<React.SetStateAction<any>>;
 };
 
-const Intro = () => {
-    const [fields, setFields] = useState([
-        {intro: "Hi! My name is", name: "", desc: " A passionate dev looking forward to "}
-    ]);
+const Intro: React.FC<IntroProps> = ({profileData, setProfileData}) => {
 
-    const handleChange = (index: number, fieldKey: keyof Field, event: React.ChangeEvent<HTMLInputElement>) => {
-        const updatedFields = [...fields];
-        updatedFields[index][fieldKey] = event.target.value;
-        setFields(updatedFields);
-    }
+    const handleChange = (fieldKey: keyof typeof profileData.intro, event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setProfileData({
+            ...profileData,
+            intro: {
+                ...profileData.intro,
+                [fieldKey]: event.target.value,
+            },
+        });
+    };
 
     return (
         <div className="p-4 my-4 bg-zinc-50 shadow-2xl text-neutral-950">
-            {fields.map((field, index) => (
-                <div>
-                    <div>
-                        <h1 className="text-xl">Intro</h1>
-                        <div className="flex">
-                            <input
-                                type="text"
-                                value={field.intro}
-                                placeholder="Introduce yourself"
-                                onChange={event => handleChange(index, "intro", event)}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Joe Swanson"
-                                onChange={event => handleChange(index, "name", event)}
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <h1 className="text-xl">Description</h1>
-                        <div className="flex">
-                            <input
-                                type="text"
-                                placeholder="What do you do"
-                                value={field.desc}
-                                onChange={event => handleChange(index, "desc", event)}
-                            />
-                        </div>
-                    </div>
-                </div>
-            ))}
+            <h1 className="text-xl">Intro</h1>
+            <input
+                value={profileData.intro.intro}
+                onChange={(event) => handleChange("intro", event)}
+                placeholder="Hey! I'm ..."
+            />
+            <input
+                value={profileData.intro.name}
+                onChange={(event) => handleChange("name", event)}
+                placeholder="Your name"
+            />
+            <textarea
+                value={profileData.intro.desc}
+                onChange={(event) => handleChange("desc", event)}
+                placeholder="A passionate dev looking forward to..."
+            />
         </div>
     );
 };

@@ -10,7 +10,7 @@ body{
   margin: auto;
 }
 
-input[type="text"] {
+input {
   width: 100%;
   padding: 0.5rem;
   margin: 0.5rem;

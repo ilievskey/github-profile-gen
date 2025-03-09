@@ -1,23 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Folder from "./Folder.tsx";
 
-const Skills: React.FC = () => {
-    const [selectedIcons, setSelectedIcons] = useState<string[]>([]);
+type SkillsProps = {
+    profileData: any;
+    setProfileData: React.Dispatch<React.SetStateAction<any>>;
+};
+
+const Skills: React.FC<SkillsProps> = ({profileData, setProfileData}) => {
 
     const handleIconClick = (icon: string) => {
-        if(!selectedIcons.includes(icon)){
-            setSelectedIcons((prev) => [...prev, icon]);
+        if(!profileData.skills.includes(icon)){
+            setProfileData({
+                ...profileData,
+                skills: [...profileData.skills, icon],
+            });
         }
-    };
-
-    const generateReadme = () => {
-        const readmeContent = `# Selected Languages\n\n${selectedIcons.join('\n')}`;
-        console.log(readmeContent);
-        const blob = new Blob([readmeContent], {type: 'text/plain'});
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'README.md';
-        link.click();
     };
 
     return (
@@ -43,11 +40,10 @@ const Skills: React.FC = () => {
             <div>
                 <h2>Currently selected:</h2>
                 <ul>
-                    {selectedIcons.map((icon) => (
-                        <li key={icon}>{icon}</li>
+                    {profileData.skills.map((icon: any, index: number) => (
+                        <span key={index}>{icon}</span>
                     ))}
                 </ul>
-                <button onClick={generateReadme}>Generate</button>
             </div>
         </div>
     );
