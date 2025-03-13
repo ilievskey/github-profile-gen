@@ -20,21 +20,26 @@ const Intro: React.FC<IntroProps> = ({profileData, setProfileData}) => {
     return (
         <div className="p-4 my-4 bg-zinc-50 shadow-2xl text-neutral-950">
             <h1 className="text-xl">Intro</h1>
-            <input
-                value={profileData.intro.intro}
-                onChange={(event) => handleChange("intro", event)}
-                placeholder="Hey! I'm ..."
-            />
-            <input
-                value={profileData.intro.name}
-                onChange={(event) => handleChange("name", event)}
-                placeholder="Your name"
-            />
-            <textarea
-                value={profileData.intro.desc}
-                onChange={(event) => handleChange("desc", event)}
-                placeholder="A passionate dev looking forward to..."
-            />
+            <div className="flex">
+                <input
+                    value={profileData.intro.intro}
+                    onChange={(event) => handleChange("intro", event)}
+                    placeholder="Hey! I'm ..."
+                />
+                <input
+                    value={profileData.intro.name}
+                    onChange={(event) => handleChange("name", event)}
+                    placeholder="Your name"
+                />
+            </div>
+            <div className="flex">
+                <textarea
+                    value={profileData.intro.desc}
+                    className=""
+                    onChange={(event) => handleChange("desc", event)}
+                    placeholder="A passionate dev looking forward to..."
+                />
+            </div>
         </div>
     );
 };

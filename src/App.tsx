@@ -11,7 +11,7 @@ const App: React.FC = () => {
     const [profileData, setProfileData] = useState({
         intro: {intro: "", name: "", desc: ""},
         experiences: [{text1: "Noteworthy project I've done is", text2: ""}],
-        skills: [] as string[],
+        skills: [] as {imgLink: string, name: string}[],
         contacts: [] as {platform: string, url: string}[],
     })
 
@@ -22,7 +22,7 @@ const App: React.FC = () => {
         ## Experiences
         ${profileData.experiences.map(exp => `- ${exp.text1}: ${exp.text2}`).join('\n')}
         ## Skills
-        ${profileData.skills.join(', ')}
+        ${profileData.skills.map(skill => skill.name)}
         ## Contact
         ${profileData.contacts.map(contact => `- ${contact.platform}: ${contact.url}`).join('\n')}
         `;

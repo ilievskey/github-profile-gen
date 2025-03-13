@@ -1,5 +1,16 @@
 import React from 'react';
-import {FaGithub, FaLinkedin, FaBehance} from 'react-icons/fa';
+import {
+    FaGithub,
+    FaLinkedin,
+    FaBehance,
+    FaInstagram,
+    FaReddit,
+    FaDribbble,
+    FaYoutube,
+    FaDiscord,
+    FaStackOverflow
+} from 'react-icons/fa';
+import {FaXTwitter} from "react-icons/fa6";
 
 type ContactProps = {
     profileData: any;
@@ -10,6 +21,13 @@ const availableContacts =[
     {platform: "Github", icon: <FaGithub/>},
     {platform: "LinkedIn", icon: <FaLinkedin/>},
     {platform: "Behance", icon: <FaBehance/>},
+    {platform: "Instagram", icon: <FaInstagram/>},
+    {platform: "Reddit", icon: <FaReddit/>},
+    {platform: "Dribble", icon: <FaDribbble/>},
+    {platform: "Twitter/X", icon: <FaXTwitter/>},
+    {platform: "Youtube", icon: <FaYoutube/>},
+    {platform: "Discord", icon: <FaDiscord/>},
+    {platform: "StackOverflow", icon: <FaStackOverflow/>},
 ];
 
 const Contact: React.FC<ContactProps> = ({profileData, setProfileData}) => {

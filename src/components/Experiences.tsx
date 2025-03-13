@@ -26,7 +26,7 @@ const Experiences: React.FC<ExperiencesProps> = ({profileData, setProfileData}) 
         <div className="card-bg">
             <h1 className="text-xl">Experiences</h1>
             {profileData.experiences.map((field: any, index: number) => (
-                <div key={index}>
+                <div key={index} className="flex">
                     <input
                         value={field.text1}
                         onChange={(event) => handleChange(index, "text1", event)}
@@ -39,10 +39,12 @@ const Experiences: React.FC<ExperiencesProps> = ({profileData, setProfileData}) 
                     />
                 </div>
             ))}
-            <button
-                onClick={addField}
-                className="m-4 px-4 py-2 add"
-            >Add another</button>
+            <div className="flex">
+                <button
+                    onClick={addField}
+                    className="m-2 px-4 py-2 add"
+                >Add another</button>
+            </div>
         </div>
     );
 };
