@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     FaGithub,
     FaLinkedin,
@@ -33,23 +33,49 @@ const availableContacts =[
 ];
 
 const Contact: React.FC<ContactProps> = ({profileData, setProfileData}) => {
+    const [otherPlatform, setOtherPlatform] = useState("");
+    const [showOtherInput, setShowOtherInput] = useState(false);
 
     const handleAddContact = (contact: {platform: string; icon: React.ReactNode}) => {
+        if(contact.platform === "Other"){
+            setShowOtherInput(true);
+            return;
+        }
+
         if(profileData.contacts.some((field: any) => field.platform === contact.platform)) return;
 
         setProfileData({
             ...profileData,
             contacts: [
                 ...profileData.contacts,
-                {platform: contact.platform, url: ""}
+                {platform: contact.platform, url: "", icon: contact.icon}
             ]
         });
+    };
+
+    const handleAddOtherContact = () => {
+        if(!otherPlatform.trim()) return;
+
+        setProfileData({
+            ...profileData,
+            contacts: [
+                ...profileData.contacts,
+                {platform: otherPlatform, url: "", icon: <FaPlus/>}
+            ]
+        });
+
+        setOtherPlatform("");
+        setShowOtherInput(false);
     };
 
     const handleInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
         const updatedContacts = [...profileData.contacts];
         updatedContacts[index].url = event.target.value;
         setProfileData({...profileData, contacts: updatedContacts});
+    };
+
+    const handleOtherPlatformChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setOtherPlatform(event.target.value);
     };
 
     return (
@@ -66,6 +92,24 @@ const Contact: React.FC<ContactProps> = ({profileData, setProfileData}) => {
                     </button>
                 ))}
             </div>
+
+            {showOtherInput && (
+                <div className="mt-4 flex items-center">
+                    <input
+                        type="text"
+                        placeholder="Platform"
+                        value={otherPlatform}
+                        onChange={handleOtherPlatformChange}
+                        className="flex-1 mr-2"
+                    />
+                    <button
+                        onClick={handleAddOtherContact}
+                        className="add"
+                    >
+                        Add
+                    </button>
+                </div>
+            )}
             <div className="added-contacts mt-4">
                 {profileData.contacts.map((field: any, index: number) => (
                     <div key={index} className="flex items-center mb-2">
