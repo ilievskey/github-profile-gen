@@ -104,7 +104,7 @@ const Contact: React.FC<ContactProps> = ({profileData, setProfileData}) => {
                     />
                     <button
                         onClick={handleAddOtherContact}
-                        className="add"
+                        className="add m-2 p-2"
                     >
                         Add
                     </button>

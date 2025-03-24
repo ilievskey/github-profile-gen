@@ -9,24 +9,31 @@ interface FolderProps {
 const Folder: React.FC<FolderProps> = ({title, icons, onIconClick}) => {
     const [isHovered, setIsHovered] = useState(false);
 
+    const visibleIcons = isHovered || icons.length <= 3 ? icons : icons.slice(0, 3);
+
     return (
-        <div onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="border-2 border-gray-200 p-4 m-4 w-16">
+        <div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="p-4 m-4 w-16"
+        >
             <h3>{title}</h3>
-            {isHovered && (
-                <div>
-                    {icons.map((iconObj, index) => (
-                        <button
+            <div className="folder">
+                {visibleIcons.map((iconObj, index) => (
+                    <button
+                        className="w-12 h-12 items-center justify-center"
                         key={index}
                         onClick={() => onIconClick(iconObj)}
                         style={{ cursor: 'pointer' }}
-                        >
-                            <img src={iconObj.imgLink} alt={iconObj.name}/>
-                        </button>
-                    ))}
-                </div>
-            )}
+                    >
+                        <img
+                            src={iconObj.imgLink}
+                            alt={iconObj.name}
+                            className="max-w-8 max-h-8 object-contain"
+                        />
+                    </button>
+                ))}
+            </div>
         </div>
     );
 }

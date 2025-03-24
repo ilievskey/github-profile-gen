@@ -40,7 +40,7 @@ const Skills: React.FC<SkillsProps> = ({profileData, setProfileData}) => {
                     title="Backend"
                     icons={[
                         {imgLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2048px-Node.js_logo.svg.png", name: "Node.js"},
-                        {imgLink: "https://static-00.iconduck.com/assets.00/django-icon-1606x2048-lwmw1z73.png", name: "Django"},
+                        {imgLink: "https://images.icon-icons.com/2107/PNG/512/file_type_django_icon_130645.png", name: "Django"},
                         {imgLink: "https://dt-cdn.net/hub/logos/ruby-on-rails-agent.png", name: "Ruby on Rails"},
                         {imgLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/2048px-Laravel.svg.png", name: "Laravel"},
                         {imgLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/800px-Spring_Boot.svg.png", name: "Spring Boot"},
@@ -65,8 +65,10 @@ const Skills: React.FC<SkillsProps> = ({profileData, setProfileData}) => {
                 <ul className="flex gap-4">
                     {profileData.skills.map((icon: any, index: number) => (
                         <span key={index} className="flex">
-                            <img src={icon.imgLink} alt={icon.name} className="w-12"/>
-                            {/*fix height mismatch*/}
+                            <img
+                                src={icon.imgLink}
+                                alt={icon.name}
+                                className="max-w-8 max-h-8 object-contain"/>
                             <span className="content-center">{icon.name}</span>
                         </span>
                     ))}
