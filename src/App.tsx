@@ -38,7 +38,7 @@ ${profileData.contacts.map(contact => `- ${contact.platform}: ${contact.url}`).j
         <Experiences profileData={profileData} setProfileData={setProfileData}/>
         <Skills profileData={profileData} setProfileData={setProfileData}/>
         <Contact profileData={profileData} setProfileData={setProfileData}/>
-        <button onClick={generateReadme} className="add px-4 py-2">G e n e r a t e README</button>
+        <button onClick={generateReadme} className="add px-4 py-2 mb-3">G e n e r a t e README</button>
     </>
   )
 }

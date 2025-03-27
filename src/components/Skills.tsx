@@ -24,6 +24,13 @@ const Skills: React.FC<SkillsProps> = ({profileData, setProfileData}) => {
         }
     };
 
+    const handleSkillRemove = (iconName: string) => {
+        setProfileData({
+            ...profileData,
+            skills: profileData.skills.filter((skill: any) => skill.name !== iconName)
+        });
+    };
+
     const frontendIcons = [
         {name: "React", link: "react", suffix: ""},
         {name: "Vue.js", link: "vuejs", suffix: ""},
@@ -90,13 +97,18 @@ const Skills: React.FC<SkillsProps> = ({profileData, setProfileData}) => {
                 <ul className="flex gap-12 flex-wrap p-8">
                     {profileData.skills.map((icon: any, index: number) => (
                         <span key={index} className="flex">
-                            <img
-                                src={icon.imgLink}
-                                alt={icon.name}
-                                className="max-w-8 max-h-8 object-contain"
-                                loading="lazy"
-                            />
-                            <span className="whitespace-nowrap">{icon.name}</span>
+                            <button
+                                onClick={() => handleSkillRemove(icon.name)}
+                                className="remove grid px-4 justify-items-center hover:cursor-pointer group"
+                            >
+                                <img
+                                    src={icon.imgLink}
+                                    alt={icon.name}
+                                    className="max-w-12 max-h-12 object-contain group-hover:grayscale"
+                                    loading="lazy"
+                                />
+                                <span className="whitespace-nowrap group-hover:opacity-40">{icon.name}</span>
+                            </button>
                         </span>
                     ))}
                 </ul>
