@@ -9,19 +9,19 @@ interface FolderProps {
 const Folder: React.FC<FolderProps> = ({title, icons, onIconClick}) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    const visibleIcons = isHovered || icons.length <= 3 ? icons : icons.slice(0, 3);
+    const visibleIcons = isHovered ? icons : icons.slice(0, 3);
 
     return (
         <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="p-4 m-4 w-16"
+            className="p-4 m-4"
         >
             <h3>{title}</h3>
-            <div className="folder">
+            <div className={`folder grid gap-2 ${isHovered ? 'grid-cols-3' : 'grid-cols-3'}`}>
                 {visibleIcons.map((iconObj, index) => (
                     <button
-                        className="w-12 h-12 items-center justify-center"
+                        className="w-12 h-12 flex items-center justify-center"
                         key={index}
                         onClick={() => onIconClick(iconObj)}
                         style={{ cursor: 'pointer' }}
@@ -29,7 +29,7 @@ const Folder: React.FC<FolderProps> = ({title, icons, onIconClick}) => {
                         <img
                             src={iconObj.imgLink}
                             alt={iconObj.name}
-                            className="max-w-8 max-h-8 object-contain"
+                            className="max-w-full max-h-full object-contain"
                         />
                     </button>
                 ))}

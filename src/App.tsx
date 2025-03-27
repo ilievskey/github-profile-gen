@@ -16,8 +16,8 @@ const App: React.FC = () => {
     })
 
     const generateReadme = () => {
-        const readmeContent = `# ${profileData.intro.intro} ${profileData.intro.name}
-${profileData.intro.desc}
+        const readmeContent = `<h2 align="center">${profileData.intro.intro} ${profileData.intro.name}</h2>
+<h3 align="center">${profileData.intro.desc}</h3>
 ## Experiences
 ${profileData.experiences.map(exp => `- ${exp.text1}: ${exp.text2}`).join('\n')}
 ## Skills
