@@ -12,12 +12,21 @@ const Experiences: React.FC<ExperiencesProps> = ({profileData, setProfileData}) 
         setProfileData({...profileData, experiences: updatedExperiences});
     };
 
+    const experiencesPlaceholders = [
+        { placeholder: "Currently working on" },
+        { placeholder: "One of my best work" },
+        { placeholder: "Developing ideas for" },
+        { placeholder: "In progress..." },
+    ];
+
     const addField = () => {
+        const randomIndex = Math.floor(Math.random() * experiencesPlaceholders.length);
+        const newPlaceholder = experiencesPlaceholders[randomIndex].placeholder;
         setProfileData({
             ...profileData,
             experiences: [
                 ...profileData.experiences,
-                {text1: "Currently working on", text2: ""},
+                {text1: "", text2: "", placeholder: newPlaceholder},
             ],
         });
     };
@@ -30,7 +39,7 @@ const Experiences: React.FC<ExperiencesProps> = ({profileData, setProfileData}) 
                     <input
                         value={field.text1}
                         onChange={(event) => handleChange(index, "text1", event)}
-                        placeholder="A project I'm proud of"
+                        placeholder={field.placeholder || "A project I'm proud of"}
                     />
                     <input
                         value={field.text2}

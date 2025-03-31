@@ -10,14 +10,21 @@ const App: React.FC = () => {
 
     const [profileData, setProfileData] = useState({
         intro: {intro: "", name: "", desc: ""},
-        experiences: [{text1: "Noteworthy project I've done is", text2: ""}],
+        experiences: [{text1: "", text2: ""}],
         skills: [] as {imgLink: string, name: string}[],
         contacts: [] as {platform: string, url: string}[],
     })
 
+    const introSection =
+        profileData.intro.intro.trim() || profileData.intro.name.trim() ? `<h2 align="center">${profileData.intro.intro} ${profileData.intro.name}</h2>` : '';
+
+    const descriptionSection =
+        profileData.intro.desc.trim() ? `<h3 align="center">${profileData.intro.desc}</h3>` : '';
+
+
     const generateReadme = () => {
-        const readmeContent = `<h2 align="center">${profileData.intro.intro} ${profileData.intro.name}</h2>
-<h3 align="center">${profileData.intro.desc}</h3>
+        const readmeContent = `${introSection}
+${descriptionSection}
 ## Experiences
 ${profileData.experiences.map(exp => `- ${exp.text1}: ${exp.text2}`).join('\n')}
 ## Skills
