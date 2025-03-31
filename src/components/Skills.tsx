@@ -75,7 +75,7 @@ const Skills: React.FC<SkillsProps> = ({profileData, setProfileData}) => {
     return (
         <div className="card-bg">
             <h1 className="text-xl">Skills</h1>
-            <div className="flex gap-4">
+            <div className="flex">
                 <Folder
                     title="Frontend"
                     icons={frontendIcons}

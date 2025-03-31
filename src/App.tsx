@@ -23,7 +23,7 @@ ${profileData.experiences.map(exp => `- ${exp.text1}: ${exp.text2}`).join('\n')}
 ## Skills
 ${profileData.skills.map(skill => skill.name)}
 ## Contact
-${profileData.contacts.map(contact => `- ${contact.platform}: ${contact.url}`).join('\n')}`;
+${profileData.contacts.map(contact => `- [${contact.platform}](${contact.url})`).join('\n')}`;
         const blob = new Blob([readmeContent], {type: 'text/plain'});
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);

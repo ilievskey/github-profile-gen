@@ -15,10 +15,10 @@ const Folder: React.FC<FolderProps> = ({title, icons, onIconClick}) => {
         <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="p-4 m-4"
+            className="p-4"
         >
             <h3>{title}</h3>
-            <div className={`folder grid gap-2 ${isHovered ? 'grid-cols-3' : 'grid-cols-3'}`}>
+            <div className={`folder grid ${isHovered ? 'grid-cols-3' : 'grid-cols-3'}`}>
                 {visibleIcons.map((iconObj, index) => (
                     <button
                         className="w-12 h-12 flex items-center justify-center"
