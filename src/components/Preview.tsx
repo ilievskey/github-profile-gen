@@ -9,23 +9,23 @@ const Preview: React.FC<PreviewProps> = ({ profileData }) => {
     const generateMarkdown = () => {
         let markdown = '';
 
-        if(profileData.intro.name){
-            markdown += `# ${profileData.intro.name}\n\n`;
-        }
-
-        if (profileData.intro.intro) {
-            markdown += `${profileData.intro.intro}\n\n`;
+        if (profileData.intro.name || profileData.intro.intro) {
+            markdown += `<h2 align="center">${profileData.intro.intro} ${profileData.intro.name}</h2>`;
         }
 
         if (profileData.intro.desc) {
-            markdown += `${profileData.intro.desc}\n\n`;
+            markdown += `<h3 align="center">${profileData.intro.desc}</h3>`;
         }
 
-        if(profileData.experiences.length > 0){
+        const hasExperience = profileData.experiences.some(
+            (exp:any) => exp.text1.trim() || exp.text2.trim()
+        );
+
+        if(hasExperience){
             markdown += `## Experiences \n\n`;
-            profileData.experiences.forEach((exp: any) => {
+            profileData.experiences.forEach((exp:any) => {
                 if(exp.text1 || exp.text2) {
-                    markdown += `- ${exp.text1}: ${exp.text2}\n`;
+                    markdown += `- ${exp.text1} ${exp.text2}\n`;
                 }
             });
             markdown += '\n';
@@ -51,8 +51,8 @@ const Preview: React.FC<PreviewProps> = ({ profileData }) => {
 
     return (
         <div className="card-bg">
-            <h2>README preview</h2>
-            <div className="p-4 border border-gray-300 rounded">
+            <h2>README p r e v i e w</h2>
+            <div className="py-4">
                 <Markdown source={generateMarkdown()} />
             </div>
         </div>

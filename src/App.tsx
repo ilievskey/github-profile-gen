@@ -5,6 +5,7 @@ import Intro from "./components/Intro.tsx";
 import Experiences from "./components/Experiences.tsx";
 import Contact from "./components/Contact.tsx";
 import Skills from "./components/Skills.tsx";
+import Preview from "./components/Preview.tsx";
 
 const App: React.FC = () => {
 
@@ -14,6 +15,8 @@ const App: React.FC = () => {
         skills: [] as {imgLink: string, name: string}[],
         contacts: [] as {platform: string, url: string}[],
     })
+
+    const [showPreview, setShowPreview] = useState(false);
 
     const introSection =
         profileData.intro.intro.trim() || profileData.intro.name.trim() ? `<h2 align="center">${profileData.intro.intro} ${profileData.intro.name}</h2>` : '';
@@ -52,15 +55,34 @@ ${contactSection}`
     }
 
   return (
-    <>
+    <div className="container mx-auto">
         <Nav/>
-        <Intro profileData={profileData} setProfileData={setProfileData}/>
-        <Experiences profileData={profileData} setProfileData={setProfileData}/>
-        <Skills profileData={profileData} setProfileData={setProfileData}/>
-        <Contact profileData={profileData} setProfileData={setProfileData}/>
-        <button onClick={generateReadme} className="add px-4 py-2 mb-3">G e n e r a t e README</button>
-    </>
+
+        <div className="flex justify-end mb-4">
+            <button
+                onClick={() => setShowPreview(!showPreview)}
+                className="add px-4 py-2"
+            >
+                {showPreview ? "Hide Preview" : "Show Preview"}
+            </button>
+        </div>
+        <div className={`${showPreview ? "grid grid-cols-2 gap-4" : ""}`}>
+            <div>
+                <Intro profileData={profileData} setProfileData={setProfileData}/>
+                <Experiences profileData={profileData} setProfileData={setProfileData}/>
+                <Skills profileData={profileData} setProfileData={setProfileData}/>
+                <Contact profileData={profileData} setProfileData={setProfileData}/>
+                <button onClick={generateReadme} className="add px-4 py-2 mb-3">G e n e r a t e README</button>
+            </div>
+            {showPreview && (
+                <div className="sticky top-4">
+                    <Preview profileData={profileData} />
+                </div>
+            )}
+        </div>
+
+    </div>
   )
 }
 
-export default App
+export default App;
