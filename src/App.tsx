@@ -21,16 +21,29 @@ const App: React.FC = () => {
     const descriptionSection =
         profileData.intro.desc.trim() ? `<h3 align="center">${profileData.intro.desc}</h3>` : '';
 
+    const experiencesSection =
+        profileData.experiences.map(exp => `- ${exp.text1}: ${exp.text2}`).join('\n');
+    // ${profileData.experiences.map(exp => `- ${exp.text1}: ${exp.text2}`).join('\n')}
+
+    const skillsSection =
+        profileData.skills.map(skill => skill.name);
+    // ${profileData.skills.map(skill => skill.name)}
+
+    const contactSection =
+        // the []() is to hyperlink the contact platform
+        profileData.contacts.map(contact => `- [${contact.platform}](${contact.url})`).join('\n');
+    // ${profileData.contacts.map(contact => `- [${contact.platform}](${contact.url})`).join('\n')}`;
 
     const generateReadme = () => {
         const readmeContent = `${introSection}
 ${descriptionSection}
 ## Experiences
-${profileData.experiences.map(exp => `- ${exp.text1}: ${exp.text2}`).join('\n')}
+${experiencesSection}
 ## Skills
-${profileData.skills.map(skill => skill.name)}
+${skillsSection}
 ## Contact
-${profileData.contacts.map(contact => `- [${contact.platform}](${contact.url})`).join('\n')}`;
+${contactSection}`
+
         const blob = new Blob([readmeContent], {type: 'text/plain'});
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
