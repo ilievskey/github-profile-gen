@@ -22,7 +22,7 @@ const Preview: React.FC<PreviewProps> = ({ profileData }) => {
         );
 
         if(hasExperience){
-            markdown += `## Experiences \n\n`;
+            markdown += `## Experiences\n\n`;
             profileData.experiences.forEach((exp:any) => {
                 if(exp.text1 || exp.text2) {
                     markdown += `- ${exp.text1} ${exp.text2}\n`;

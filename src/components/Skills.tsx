@@ -99,7 +99,7 @@ const Skills: React.FC<SkillsProps> = ({profileData, setProfileData}) => {
                         <span key={index} className="flex">
                             <button
                                 onClick={() => handleSkillRemove(icon.name)}
-                                className="remove grid px-4 justify-items-center hover:cursor-pointer group"
+                                className="remove grid justify-items-center hover:cursor-pointer group"
                             >
                                 <img
                                     src={icon.imgLink}

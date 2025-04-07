@@ -16,7 +16,6 @@ const App: React.FC = () => {
         contacts: [] as {platform: string, url: string}[],
     })
 
-    const [showPreview, setShowPreview] = useState(false);
 
     const introSection =
         profileData.intro.intro.trim() || profileData.intro.name.trim() ? `<h2 align="center">${profileData.intro.intro} ${profileData.intro.name}</h2>` : '';
@@ -58,15 +57,7 @@ ${contactSection}`
     <div className="container mx-auto">
         <Nav/>
 
-        <div className="flex justify-end mb-4">
-            <button
-                onClick={() => setShowPreview(!showPreview)}
-                className="add px-4 py-2"
-            >
-                {showPreview ? "Hide Preview" : "Show Preview"}
-            </button>
-        </div>
-        <div className={`${showPreview ? "grid grid-cols-2 gap-4" : ""}`}>
+        <div className="grid grid-cols-2 gap-4">
             <div>
                 <Intro profileData={profileData} setProfileData={setProfileData}/>
                 <Experiences profileData={profileData} setProfileData={setProfileData}/>
@@ -74,11 +65,9 @@ ${contactSection}`
                 <Contact profileData={profileData} setProfileData={setProfileData}/>
                 <button onClick={generateReadme} className="add px-4 py-2 mb-3">G e n e r a t e README</button>
             </div>
-            {showPreview && (
-                <div className="sticky top-4">
-                    <Preview profileData={profileData} />
-                </div>
-            )}
+            <div>
+                <Preview profileData={profileData} />
+            </div>
         </div>
 
     </div>
