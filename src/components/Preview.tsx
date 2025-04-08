@@ -10,11 +10,11 @@ const Preview: React.FC<PreviewProps> = ({ profileData }) => {
         let markdown = '';
 
         if (profileData.intro.name || profileData.intro.intro) {
-            markdown += `<h2 align="center">${profileData.intro.intro} ${profileData.intro.name}</h2>`;
+                markdown += `<h2 align="center">${profileData.intro.intro} ${profileData.intro.name}</h2>\n`;
         }
 
         if (profileData.intro.desc) {
-            markdown += `<h3 align="center">${profileData.intro.desc}</h3>`;
+            markdown += `<h3 align="center">${profileData.intro.desc}</h3>\n`;
         }
 
         const hasExperience = profileData.experiences.some(
@@ -22,27 +22,27 @@ const Preview: React.FC<PreviewProps> = ({ profileData }) => {
         );
 
         if(hasExperience){
-            markdown += `## Experiences\n\n`;
+            markdown += `<h2>Experiences</h2>\n`;
             profileData.experiences.forEach((exp:any) => {
                 if(exp.text1 || exp.text2) {
-                    markdown += `- ${exp.text1} ${exp.text2}\n`;
+                    markdown += `${exp.text1} ${exp.text2}\n\n`;
                 }
             });
             markdown += '\n';
         }
 
         if(profileData.skills.length > 0){
-            markdown += `## Skills\n\n`;
+            markdown += `<h2>Skills</h2>\n`;
             profileData.skills.forEach((skill:any) => {
-                markdown += `- ${skill.name}\n`;
+                markdown += `<img src="${skill.imgLink}" alt="${skill.name} icon" width="30" height="30"/> ${skill.name}\n`;
             });
             markdown += '\n';
         }
 
         if(profileData.contacts.length > 0){
-            markdown += `## Contact\n\n`;
+            markdown += `<h2>Contact</h2>\n`;
             profileData.contacts.forEach((contact:any) => {
-                markdown += `- [${contact.platform}](${contact.url})\n`;
+                markdown += `<a href="${contact.url}">${contact.platform}</a>\n`;
             });
         }
 

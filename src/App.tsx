@@ -21,30 +21,31 @@ const App: React.FC = () => {
         profileData.intro.intro.trim() || profileData.intro.name.trim() ? `<h2 align="center">${profileData.intro.intro} ${profileData.intro.name}</h2>` : '';
 
     const descriptionSection =
-        profileData.intro.desc.trim() ? `<h3 align="center">${profileData.intro.desc}</h3>` : '';
+        profileData.intro.desc.trim() ? `<h3 align="center">${profileData.intro.desc}</h3>\n` : '';
+
+    const hasExperience = profileData.experiences.some(
+        (exp:any) => exp.text1.trim() || exp.text2.trim()
+    );
 
     const experiencesSection =
-        profileData.experiences.map(exp => `- ${exp.text1}: ${exp.text2}`).join('\n');
+        hasExperience ? `<h2>Experiences</h2>\n` + profileData.experiences.map(exp => `${exp.text1} ${exp.text2}`).join('\n') : '';
     // ${profileData.experiences.map(exp => `- ${exp.text1}: ${exp.text2}`).join('\n')}
 
     const skillsSection =
-        profileData.skills.map(skill => skill.name);
+        profileData.contacts.length > 0 ? `<h2>Skills</h2>\n` + profileData.skills.map(skill => `<img src="${skill.imgLink}" alt="${skill.name} icon" width="30" height="30"/> ${skill.name}`).join('\n') : '';
     // ${profileData.skills.map(skill => skill.name)}
 
     const contactSection =
         // the []() is to hyperlink the contact platform
-        profileData.contacts.map(contact => `- [${contact.platform}](${contact.url})`).join('\n');
+        profileData.contacts.length > 0 ? `<h2>Contact</h2>\n` + profileData.contacts.map(contact => `<a href="${contact.url}">${contact.platform}</a>`).join('\n') : '';
     // ${profileData.contacts.map(contact => `- [${contact.platform}](${contact.url})`).join('\n')}`;
 
     const generateReadme = () => {
         const readmeContent = `${introSection}
 ${descriptionSection}
-## Experiences
 ${experiencesSection}
-## Skills
 ${skillsSection}
-## Contact
-${contactSection}`
+${contactSection}`.trim();
 
         const blob = new Blob([readmeContent], {type: 'text/plain'});
         const link = document.createElement('a');

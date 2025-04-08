@@ -80,7 +80,7 @@ const Contact: React.FC<ContactProps> = ({profileData, setProfileData}) => {
 
     return (
         <div className="card-bg">
-            <h2 className="text-xl mb-4">Add Your Contact Links</h2>
+            <h2 className="text-xl mb-4">Contact</h2>
             <div className="available-contacts flex flex-wrap">
                 {availableContacts.map((contact, index) => (
                     <button
